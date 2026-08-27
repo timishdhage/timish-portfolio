@@ -34,27 +34,28 @@ export default function Hero() {
         />
       </div>
 
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              y: [null, Math.random() * -100],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 5 + Math.random() * 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
-      </div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+  {[...Array(20)].map((_, i) => (
+    <motion.div
+      key={i}
+      className="absolute h-1 w-1 rounded-full bg-primary/30"
+      style={{
+        left: `${(i * 37) % 100}%`,
+        top: `${(i * 53) % 100}%`,
+      }}
+      animate={{
+        y: [0, -80, 0],
+        opacity: [0.2, 0.65, 0.2],
+      }}
+      transition={{
+        duration: 6 + (i % 5) * 2,
+        delay: (i % 4) * 0.4,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+  ))}
+</div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.div
